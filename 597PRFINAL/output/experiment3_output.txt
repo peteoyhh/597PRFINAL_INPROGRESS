@@ -1,0 +1,77 @@
+Random seed set to: 42
+============================================================
+Experiment 3: Table Composition Analysis
+Testing H3: Strategy performance depends on opponent composition (theta)
+============================================================
+
+------------------------------------------------------------
+DEFENSIVE STRATEGY across compositions:
+------------------------------------------------------------
+
+Running trials for theta = 0.00...
+  Mean profit: 23916.53
+  95% CI: [22556.19, 25276.87]
+  Win rate: 0.3356
+
+Running trials for theta = 0.33...
+  Mean profit: 23487.77
+  95% CI: [22206.65, 24768.89]
+  Win rate: 0.3365
+
+Running trials for theta = 0.67...
+  Mean profit: 26217.43
+  95% CI: [24888.74, 27546.11]
+  Win rate: 0.3360
+
+Running trials for theta = 1.00...
+  Mean profit: 26659.07
+  95% CI: [25318.22, 27999.92]
+  Win rate: 0.3360
+
+------------------------------------------------------------
+AGGRESSIVE STRATEGY across compositions:
+------------------------------------------------------------
+
+Running trials for theta = 0.00...
+  Mean profit: 17207.62
+  95% CI: [15770.75, 18644.50]
+  Win rate: 0.0707
+
+Running trials for theta = 0.33...
+  Mean profit: 18415.13
+  95% CI: [16994.39, 19835.87]
+  Win rate: 0.0703
+
+Running trials for theta = 0.67...
+  Mean profit: 19932.10
+  95% CI: [18562.44, 21301.77]
+  Win rate: 0.0704
+
+Running trials for theta = 1.00...
+  Mean profit: 22376.38
+  95% CI: [20984.31, 23768.44]
+  Win rate: 0.0700
+
+------------------------------------------------------------
+REGRESSION ANALYSIS:
+------------------------------------------------------------
+
+Defensive Strategy:
+  Slope: 3290.27
+  R-squared: 0.7867
+  p-value: 0.113023
+
+Aggressive Strategy:
+  Slope: 5095.49
+  R-squared: 0.9726
+  p-value: 0.013805
+
+------------------------------------------------------------
+INTERPRETATION:
+------------------------------------------------------------
+Defensive strategy profit INCREASES as theta increases
+Aggressive strategy profit INCREASES as theta increases (more defensive opponents)
+
+============================================================
+
+Plots saved to: /Users/xihao/Desktop/597PRFINAL/plots/experiment_3A

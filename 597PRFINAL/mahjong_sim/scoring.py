@@ -1,0 +1,88 @@
+from typing import Union
+import numpy as np
+
+
+def compute_score(fan: int, base_points: int = 1) -> int:
+    """
+    Compute base score for a winning hand.
+    
+    Score formula: B * 2^fan
+    where B is base_points and fan is the total fan count.
+    
+    Args:
+        fan: Total fan count (including Kong bonuses)
+        base_points: Base point value (default: 1)
+    
+    Returns:
+        Base score value
+    """
+    return base_points * (2 ** fan)
+
+
+def compute_winner_profit(score: float, is_self_draw: bool, deal_in_occurred: bool) -> float:
+    """
+    Compute profit for the winner.
+    
+    Beijing Mahjong scoring rules:
+    - If self-draw: Winner receives score * 3 (one share from each of 3 opponents)
+    - If deal-in: Winner receives score (from the player who dealt in)
+    
+    Important: Winner should NEVER receive negative profit.
+    
+    Args:
+        score: Base score (B * 2^fan)
+        is_self_draw: Boolean indicating if winner self-drew
+        deal_in_occurred: Boolean indicating if deal-in occurred
+    
+    Returns:
+        Profit for the winner (always >= 0)
+    """
+    if is_self_draw:
+        # Self-draw: receive from all 3 opponents
+        return score * 3
+    elif deal_in_occurred:
+        # Deal-in: receive from the player who dealt in
+        return score
+    else:
+        # Should not happen, but default to self-draw
+        return score * 3
+
+
+def compute_loser_cost(score: float, penalty_multiplier: float, is_deal_in_loser: bool) -> float:
+    """
+    Compute cost for the losing player.
+    
+    Beijing Mahjong penalty rules:
+    - If player dealt in: Pay score * penalty_multiplier
+    - If opponent self-drew: Pay score (one of three shares)
+    
+    Args:
+        score: Base score (B * 2^fan)
+        penalty_multiplier: Multiplier for deal-in penalty
+        is_deal_in_loser: Boolean indicating if this player dealt in
+    
+    Returns:
+        Cost for the loser (negative value, representing loss)
+    """
+    if is_deal_in_loser:
+        # Dealt in: pay penalty
+        return -score * penalty_multiplier
+    else:
+        # Opponent self-drew: pay base score
+        return -score
+
+
+def compute_total_fan(base_fan: int, kong_count: int, max_total_fan: int = 16) -> int:
+    """
+    Compute total fan including Kong bonuses, with hard cap.
+    
+    Args:
+        base_fan: Base fan value from hand pattern
+        kong_count: Number of Kong events
+        max_total_fan: Maximum allowed total fan (default: 16)
+    
+    Returns:
+        Total fan count (capped at max_total_fan to prevent explosion)
+    """
+    total = base_fan + kong_count
+    return min(total, max_total_fan)

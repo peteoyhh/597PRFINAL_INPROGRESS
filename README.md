@@ -95,35 +95,6 @@ All tunable parameters live in `configs/base.yaml`. Update that file (and keep e
 
 > Tip: after editing `base.yaml`, rerun the relevant experiment scripts so the new configuration gets picked up automatically.
 
-## ✅ Latest Results (seed = 42)
-
-`python3 main.py --all` writes the most recent metrics to `output/all_experiments_output.txt`. Highlights from the latest run (summarized):
-
-- **Experiment 1 (4-player table)**  
-  - Defensive: profit ≈ `879`, utility ≈ `-53`, win rate `20.2%`, mean fan `2.53`.  
-  - Aggressive: profit ≈ `-74`, utility ≈ `-229`, win rate `5.3%`, mean fan `5.63`.  
-  - Insight: defensive play steadily earns chips while aggressive runners hit large-fan wins but suffer consistent negative utility.
-
-- **Experiment 2 (utility focus, 2000 trials × 200 rounds)**  
-  - Defensive utility mean `172.0` (95% CI `[169.4, 174.6]`).  
-  - Aggressive utility mean `74.2` (95% CI `[70.3, 78.1]`).  
-  - Difference (Agg − Def) `-97.8`, `t = 41.10`, `p < 1e-6`.  
-  - Profit reference: defensive `23,917`, aggressive `18,199`.
-
-- **Experiment 3A (single-player θ sweep)**  
-  - Defensive profit grows from `23.9k` (θ = 0) to `26.7k` (θ = 1) with win rate ≈ `33.6%`.  
-  - Aggressive profit increases with more defensive opponents (`17.2k` → `22.4k`), confirming the composition hypothesis in the single-player abstraction.
-
-- **Experiment 3B (full 4-player table)**  
-  - θ counts defensive opponents (0–4). θ = 2 lands near zero-sum (DEF `-177`, AGG `+177`).  
-  - Regression slopes: defensive `-4.9k` per extra DEF opponent (R² `0.96`), aggressive `-11.7k` (R² `0.81`).  
-  - Dealer stats remain roughly zero-sum each round, validating the rotation logic.
-
-- **Experiment 4 (sensitivity)**  
-  - Deal-in penalty 1 → 5 expands the DEF–AGG profit gap from `≈3.3k` to `≈11.1k`.  
-  - Utility weight α changes do not overturn DEF advantage (DEF ≈ `0.55k`, AGG ≈ `0.30k`).  
-  - Aggressive fan threshold trades frequency for hand size (threshold 1: win `33.6%` / fan `2.2`; threshold 5: win `2.1%` / fan `8.3`).  
-  - Base points scaling stays proportional (e.g., base 4 → DEF ≈ `101k`, AGG ≈ `68.6k`).
 
 ## 🧪 Running Tests
 
@@ -169,6 +140,39 @@ The simulation models each round with random variables:
 - **K**: Kong events (adds bonus fan)
 
 Scoring follows: `Score = B * 2^fan` where B is base points.
+
+
+
+## ✅ Latest Results (seed = 42)
+
+`python3 main.py --all` writes the most recent metrics to `output/all_experiments_output.txt`. Highlights from the latest run (summarized):
+
+- **Experiment 1 (4-player table)**  
+  - Defensive: profit ≈ `879`, utility ≈ `-53`, win rate `20.2%`, mean fan `2.53`.  
+  - Aggressive: profit ≈ `-74`, utility ≈ `-229`, win rate `5.3%`, mean fan `5.63`.  
+  - Insight: defensive play steadily earns chips while aggressive runners hit large-fan wins but suffer consistent negative utility.
+
+- **Experiment 2 (utility focus, 2000 trials × 200 rounds)**  
+  - Defensive utility mean `172.0` (95% CI `[169.4, 174.6]`).  
+  - Aggressive utility mean `74.2` (95% CI `[70.3, 78.1]`).  
+  - Difference (Agg − Def) `-97.8`, `t = 41.10`, `p < 1e-6`.  
+  - Profit reference: defensive `23,917`, aggressive `18,199`.
+
+- **Experiment 3A (single-player θ sweep)**  
+  - Defensive profit grows from `23.9k` (θ = 0) to `26.7k` (θ = 1) with win rate ≈ `33.6%`.  
+  - Aggressive profit increases with more defensive opponents (`17.2k` → `22.4k`), confirming the composition hypothesis in the single-player abstraction.
+
+- **Experiment 3B (full 4-player table)**  
+  - θ counts defensive opponents (0–4). θ = 2 lands near zero-sum (DEF `-177`, AGG `+177`).  
+  - Regression slopes: defensive `-4.9k` per extra DEF opponent (R² `0.96`), aggressive `-11.7k` (R² `0.81`).  
+  - Dealer stats remain roughly zero-sum each round, validating the rotation logic.
+
+- **Experiment 4 (sensitivity)**  
+  - Deal-in penalty 1 → 5 expands the DEF–AGG profit gap from `≈3.3k` to `≈11.1k`.  
+  - Utility weight α changes do not overturn DEF advantage (DEF ≈ `0.55k`, AGG ≈ `0.30k`).  
+  - Aggressive fan threshold trades frequency for hand size (threshold 1: win `33.6%` / fan `2.2`; threshold 5: win `2.1%` / fan `8.3`).  
+  - Base points scaling stays proportional (e.g., base 4 → DEF ≈ `101k`, AGG ≈ `68.6k`).
+
 
 ## 📚 Reference
 

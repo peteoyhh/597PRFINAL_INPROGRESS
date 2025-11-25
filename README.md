@@ -47,10 +47,12 @@ pip install -r requirements.txt
 ## 🎮 Usage
 
 ### Run a specific experiment:
+if python command throw you an error, try python3
 ```bash
 python main.py --experiment 1  # Run experiment 1
 python main.py --experiment 2  # Run experiment 2
 python main.py --experiment 3  # Run experiment 3
+python3 experiments/run_experiment_3_table.py # four-players table
 python main.py --experiment 4  # Run experiment 4 (sensitivity analysis)
 ```
 
@@ -69,7 +71,9 @@ python main.py --demo
 python experiments/run_experiment_1.py
 python experiments/run_experiment_2.py
 python experiments/run_experiment_3.py
+python3 experiments/run_experiment_3_table.py
 python experiments/run_sensitivity.py
+python3 main.py --all
 ```
 
 ## ⚙️ Configuration

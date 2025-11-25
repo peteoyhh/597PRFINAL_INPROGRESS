@@ -16,25 +16,36 @@ This project implements a Monte Carlo simulation to study strategic trade-offs i
 ```
 ├── README.md
 ├── requirements.txt
+├── main.py
 ├── configs/
-│   └── base.yaml          # Configuration parameters
+│   └── base.yaml
 ├── mahjong_sim/
 │   ├── __init__.py
-│   ├── variables.py       # Random variable sampling functions
-│   ├── scoring.py         # Score computation functions
-│   ├── strategies.py      # Strategy definitions (defensive/aggressive)
-│   ├── simulation.py       # Core simulation logic
-│   └── utils.py           # Statistical analysis utilities
+│   ├── players.py          # Neutral policy used in 4-player tables
+│   ├── plotting.py         # Shared Matplotlib helpers
+│   ├── scoring.py          # Score computation functions
+│   ├── simulation.py       # Core single-player simulation logic
+│   ├── strategies.py       # Defensive / aggressive strategy rules
+│   ├── table.py            # 4-player table simulation
+│   ├── utils.py            # Stats helpers & analysis utilities
+│   └── variables.py        # Random variable sampling functions
 ├── experiments/
-│   ├── run_experiment_1.py    # Strategy comparison (H1)
-│   ├── run_experiment_2.py    # Utility function analysis (H2)
-│   ├── run_experiment_3.py    # Table composition analysis (H3)
-│   └── run_sensitivity.py     # Sensitivity analysis
+│   ├── run_experiment_1.py
+│   ├── run_experiment_2.py
+│   ├── run_experiment_3.py
+│   ├── run_experiment_3_table.py
+│   └── run_sensitivity.py
 ├── tests/
-│   ├── test_variables.py
+│   ├── test_players.py
 │   ├── test_scoring.py
-│   └── test_simulation.py
-└── main.py                # Main entry point
+│   ├── test_simulation.py
+│   ├── test_simulation_extended.py
+│   ├── test_strategies.py
+│   ├── test_table.py
+│   ├── test_utils.py
+│   └── test_variables.py
+├── output/                # Text logs from main.py / experiments
+└── plots/                 # PNG charts grouped per experiment
 ```
 
 ## 🚀 Installation
